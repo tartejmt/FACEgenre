@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="canonical" href="" />
+    <link rel="shortcut icon" href="" type="" />
+    <link rel="icon" href="" type="" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="내 얼굴은 어떤 장르인지 테스트한다." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="내 얼굴 장르 테스트" />
+    <meta
+      property="og:description"
+      content="내 얼굴은 어떤 장르인지 테스트한다."
+    />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+
+    <title>내 얼굴 장르</title>
+
+    <!-- 구글폰트 -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 글씨 반짝 효과 -->
+    <script type="text/javascript">
+      // <![CDATA[
+      var bgcolour = "#000000"; // background colour
+      var fgcolour = "#555555"; // foreground colour
+      var speed = 120; // speed of bubbling, lower is faster
+      var shades = 12; // number of shades of bubble
+
+      /****************************
+       *    Bubbling Text Effect   *
+       *(c)2003-13 mf2fm web-design*
+       *  http://www.mf2fm.com/rv  *
+       * DON'T EDIT BELOW THIS BOX *
+       ****************************/
+      var bubbcol = new Array();
+      var bubbshd;
+      var bubbler, bubbtxt;
+      var bubbchr = new Array();
+
+      function addLoadEvent(funky) {
+        var oldonload = window.onload;
+        if (typeof oldonload != "function") window.onload = funky;
+        else
+          window.onload = function () {
+            if (oldonload) oldonload();
+            funky();
+          };
+      }
+
+      addLoadEvent(bubbagump);
+
+      function bubbagump() {
+        if (document.getElementById) {
+          var i, fg, bg, col;
+          for (bubbler = 0; bubbler <= shades; bubbler++) {
+            col = "#";
+            for (i = 1; i < 6; i += 2) {
+              bg = parseInt(bgcolour.substring(i, i + 2), 16);
+              fg = parseInt(fgcolour.substring(i, i + 2), 16);
+              col += dechex(bg + (fg - bg) * (bubbler / shades));
+            }
+            bubbcol[bubbler + 1] = col;
+            if (bubbler == Math.floor(shades / 2)) bubbshd = col;
+          }
+          bubbler = document.getElementById("bubble");
+          bubbtxt = bubbler.firstChild.nodeValue;
+          while (bubbler.childNodes.length)
+            bubbler.removeChild(bubbler.childNodes[0]);
+          for (i = 0; i < bubbtxt.length; i++) {
+            fg = document.createElement("span");
+            fg.setAttribute("id", "bubb" + i);
+            fg.style.textShadow = bubbshd + " 0px 0px 2px";
+            fg.appendChild(document.createTextNode(bubbtxt.charAt(i)));
+            bubbler.appendChild(fg);
+          }
+          bubbler = setInterval("bubbling()", speed);
+        }
+      }
+
+      function dechex(dec) {
+        dec = Math.floor(dec);
+        return (dec < 16 ? "0" : "") + dec.toString(16);
+      }
+
+      function bubbling() {
+        var i, bubby;
+        for (i = 0; i < bubbtxt.length; i++) {
+          bubby = document.getElementById("bubb" + i);
+          if (bubbchr[i]) {
+            bubby.style.color = bubbcol[bubbchr[i]];
+            bubbchr[i] = (bubbchr[i] + 1) % bubbcol.length;
+          } else if (Math.random() < 7.5 / (shades * bubbtxt.length))
+            bubbchr[i] = 1;
+        }
+      }
+      // ]]>
+    </script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script
+      type="text/javascript"
+      src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6328544602cf99da"
+    ></script>
+  </head>
+  <body>
+    <!-- 시작화면 -->
+    <article class="start">
+      <span id="bubble" class="title mt-5 mb-2">내 얼굴은 어떤 장르일까?</span>
+      <span class="subtitle mb-2">- AI로 확인하는 내 얼굴 장르 테스트 -</span>
+    </article>
+
+    <article class="test">
+      <div class="container file-upload">
+        <div class="container image-upload-wrap">
+          <input
+            class="file-upload-input"
+            type="file"
+            onchange="readURL(this);"
+            accept="image/*"
+          />
+          <div class="drag-text">
+            <img src="img/upload.svg" class="mt-5 pt-5 upload" />
+            <h3 class="mb-5 pb-5 pt-4 upload-text">
+              클릭해서 얼굴 사진을 업로드 하세요
+            </h3>
+          </div>
+        </div>
+        <div class="file-upload-content">
+          <img
+            class="file-upload-image"
+            id="face-image"
+            src="#"
+            alt="your image"
+          />
+
+          <div class="loading">
+            <div class="spinner-grow mt-4" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="loadingText">결과를 불러오는 중</p>
+          </div>
+
+          <p class="mt-5 pb-5 result-message"></p>
+          <div id="label-container"></div>
+
+          <!-- Go to www.addthis.com/dashboard to customize your tools -->
+          <div class="addthis_inline_share_toolbox"></div>
+
+          <div class="image-title-wrap">
+            <button type="button" onclick="removeUpload()" class="remove-image">
+              다시하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 유튜브 참고 -->
+    <section class="youtube mb-2">
+      <div class="container mt-5 youtube-cover">
+        <a
+          href="https://www.youtube.com/c/%EC%A1%B0%EC%BD%94%EB%94%A9JoCoding/featured"
+          class="youtube-link"
+          >제작참고: 조코딩 유튜브 채널</a
+        >
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      class="jsbin"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+    <script>
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $(".image-upload-wrap").hide();
+            $(".file-upload-image").attr("src", e.target.result);
+            $(".file-upload-content").show();
+            $(".image-title").html(input.files[0].name);
+          };
+          $(".loading").show();
+          reader.readAsDataURL(input.files[0]);
+
+          start().then(() => {
+            predict();
+            $(".loading").hide();
+          });
+        } else {
+          removeUpload();
+        }
+      }
+
+      function removeUpload() {
+        $(".file-upload-input").replaceWith($(".file-upload-input").clone());
+        $(".file-upload-content").hide();
+        $(".image-upload-wrap").show();
+        $(".result-message").html("");
+      }
+      $(".image-upload-wrap").bind("dragover", function () {
+        $(".image-upload-wrap").addClass("image-dropping");
+      });
+      $(".image-upload-wrap").bind("dragleave", function () {
+        $(".image-upload-wrap").removeClass("image-dropping");
+      });
+    </script>
+
+    <script type="text/javascript">
+      let model, webcam, labelContainer, maxPredictions;
+
+      async function start() {
+        const URL = "https://teachablemachine.withgoogle.com/models/3XZGU4OJ1/";
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+      }
+
+      async function predict() {
+        var image = document.getElementById("face-image");
+        const prediction = await model.predict(image, false);
+        prediction.sort(
+          (a, b) => parseFloat(b.probability) - parseFloat(a.probability)
+        );
+        var resultMessage;
+        var resultExplain;
+        switch (prediction[0].className) {
+          case "로맨스 판타지":
+            resultMessage = "로맨스 판타지";
+            resultExplainA = "⦁ 화려하고 고급지게 생긴 당신은 로맨스 판타지상!";
+            resultExplainB = "⦁ 화사한 분위기가 주위의 이목을 집중시켜요.";
+            resultExplainC = "⦁ 눈부신 장식품들보다 당신 얼굴이 더 빛나요!";
+            break;
+          case "오피스물":
+            resultMessage = "오피스물";
+            resultExplainA = "⦁ 단정하고 세련되게 생긴 당신은 오피스물상!";
+            resultExplainB = "⦁ 도회적인 분위기를 내뿜고 다녀요.";
+            resultExplainC =
+              "⦁ 왠지 차가울 것 같으면서도 친절할 것 같은 느낌을 줘요!";
+            break;
+          case "미스터리":
+            resultMessage = "미스터리";
+            resultExplainA = "⦁ 묘한 분위기의 얼굴을 가진 당신은 미스터리상!";
+            resultExplainB =
+              "⦁ 날카롭게 생긴 이목구비가 서늘한 분위기를 풍겨요.";
+            resultExplainC = "⦁ 비밀스러운 느낌의 눈빛에 홀릴 것 같아요!";
+            break;
+          case "로맨틱 코미디":
+            resultMessage = "로맨틱 코미디";
+            resultExplainA = "⦁ 밝고 사랑스럽게 생긴 당신은 로맨틱 코미디상!";
+            resultExplainB =
+              "⦁ 첫눈에 봐도 아름답게 생긴 당신은 인기가 많아요.";
+            resultExplainC =
+              "⦁ 반짝이는 두 눈을 바라보면 사랑에 빠질 것 같아요!";
+            break;
+          case "힐링물":
+            resultMessage = "힐링물";
+            resultExplainA = "⦁ 맑고 싱그럽게 생긴 당신은 힐링물상!";
+            resultExplainB = "⦁ 수수하고 청순한 분위기를 내뿜어요.";
+            resultExplainC = "⦁ 무해한 당신의 웃음에 주위까지 밝아져요!";
+            break;
+          case "학원물":
+            resultMessage = "학원물";
+            resultExplainA = "⦁ 귀엽고 풋풋하게 생긴 당신은 학원물상!";
+            resultExplainB = "⦁ 생기발랄한 분위기가 흘러넘쳐요.";
+            resultExplainC = "⦁ 당신은 분명 누군가의 첫사랑이었을 거예요!";
+            break;
+          case "사극":
+            resultMessage = "사극";
+            resultExplainA = "⦁ 단아하게 생긴 당신은 사극상!";
+            resultExplainB =
+              "⦁ 차분하고 말끔하게 생겨 상견례 프리패스상이에요.";
+            resultExplainC =
+              "⦁ 고상한 분위기를 내뿜어 왠지 다가가기 조심스러운 느낌을 줘요.";
+
+            break;
+          default:
+            resultMessage = "알수없음";
+            resultExplainA = "";
+            resultExplainB = "";
+            resultExplainC = "";
+        }
+        var Result =
+          "<div class='" +
+          prediction[0].className +
+          "-result mb-2'>" +
+          resultMessage +
+          "</div>";
+        var Explain =
+          "<div class='explain' pt-2 container>" +
+          resultExplainA +
+          "</div>" +
+          "<div class='explain' pt-2 container>" +
+          resultExplainB +
+          "</div>" +
+          "<div class='explain' pt-2 container>" +
+          resultExplainC +
+          "</div>";
+        $(".result-message").html(Result + Explain);
+      }
+    </script>
+  </body>
+
+  Copyright (c) 2022 by Aaron Vanston
+  (https://codepen.io/aaronvanston/pen/yNYOXR) Permission is hereby granted,
+  free of charge, to any person obtaining a copy of this software and associated
+  documentation files (the "Software"), to deal in the Software without
+  restriction, including without limitation the rights to use, copy, modify,
+  merge, publish, distribute, sublicense, and/or sell copies of the Software,
+  and to permit persons to whom the Software is furnished to do so, subject to
+  the following conditions: The above copyright notice and this permission
+  notice shall be included in all copies or substantial portions of the
+  Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO
+  EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES
+  OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+  DEALINGS IN THE SOFTWARE.
+</html>
