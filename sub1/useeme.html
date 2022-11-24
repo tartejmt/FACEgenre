@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    
+
+    <title>남이 보는 나</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Song+Myung&display=swap"
+      rel="stylesheet"
+    />
+
+    </script>
+    <script type="text/javascript">
+      // <![CDATA[
+      var bgcolour = "#ffffff"; // background colour
+      var fgcolour = "#c7c7c7"; // foreground colour
+      var speed = 100; // speed of bubbling, lower is faster
+      var shades = 12; // number of shades of bubble
+
+      /****************************
+       *    Bubbling Text Effect   *
+       *(c)2003-13 mf2fm web-design*
+       *  http://www.mf2fm.com/rv  *
+       * DON'T EDIT BELOW THIS BOX *
+       ****************************/
+      var bubbcol = new Array();
+      var bubbshd;
+      var bubbler, bubbtxt;
+      var bubbchr = new Array();
+
+      function addLoadEvent(funky) {
+        var oldonload = window.onload;
+        if (typeof oldonload != "function") window.onload = funky;
+        else
+          window.onload = function () {
+            if (oldonload) oldonload();
+            funky();
+          };
+      }
+
+      addLoadEvent(bubbagump);
+
+      function bubbagump() {
+        if (document.getElementById) {
+          var i, fg, bg, col;
+          for (bubbler = 0; bubbler <= shades; bubbler++) {
+            col = "#";
+            for (i = 1; i < 6; i += 2) {
+              bg = parseInt(bgcolour.substring(i, i + 2), 16);
+              fg = parseInt(fgcolour.substring(i, i + 2), 16);
+              col += dechex(bg + (fg - bg) * (bubbler / shades));
+            }
+            bubbcol[bubbler + 1] = col;
+            if (bubbler == Math.floor(shades / 2)) bubbshd = col;
+          }
+          bubbler = document.getElementById("bubble");
+          bubbtxt = bubbler.firstChild.nodeValue;
+          while (bubbler.childNodes.length)
+            bubbler.removeChild(bubbler.childNodes[0]);
+          for (i = 0; i < bubbtxt.length; i++) {
+            fg = document.createElement("span");
+            fg.setAttribute("id", "bubb" + i);
+            fg.style.textShadow = bubbshd + " 0px 0px 2px";
+            fg.appendChild(document.createTextNode(bubbtxt.charAt(i)));
+            bubbler.appendChild(fg);
+          }
+          bubbler = setInterval("bubbling()", speed);
+        }
+      }
+
+      function dechex(dec) {
+        dec = Math.floor(dec);
+        return (dec < 16 ? "0" : "") + dec.toString(16);
+      }
+
+      function bubbling() {
+        var i, bubby;
+        for (i = 0; i < bubbtxt.length; i++) {
+          bubby = document.getElementById("bubb" + i);
+          if (bubbchr[i]) {
+            bubby.style.color = bubbcol[bubbchr[i]];
+            bubbchr[i] = (bubbchr[i] + 1) % bubbcol.length;
+          } else if (Math.random() < 7.5 / (shades * bubbtxt.length))
+            bubbchr[i] = 1;
+        }
+      }
+      // ]]>
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5918171906017238"
+     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Ustyle.css" />
+  </head>
+
+  <body >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="useeme.html">남이 보는 나 테스트</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">내 얼굴 장르 테스트 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="12gsin.html"
+              >십이지신 관상 테스트</a
+            >
+          </li>
+        </ul>
+      </div>
+      
+    </nav>
+    <article class="start container">
+      <span id="bubble" class="mt-5  text-center">남이 보는 나 </span>
+      <span class="text-center mt-3"> - '내가 생각하는 나'말고 '타인이 보는 나'는? - </span>
+      <button type="button" class="btn mt-5 mb-5" onclick="start();">
+         테스트 시작하기
+      </button>
+      
+    </article>
+    <article class="question container">
+      <div class="progress mt-5">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          style="width: calc(100 / 12 * 1%)"
+        ></div>
+      </div>
+      <p id="number" class="text-center mt-5 mb-0">번호</p>
+      <p id="title" class="text-center mt-5 mb-5">문제</p>
+      <input id="type" type="hidden" value="EI" />
+      <button id="A" type="button" class="btn mt-4">Primary</button>
+      <button id="B" type="button" class="btn mt-5 mb-5">Primary</button>
+      
+    </article>
+
+
+
+    <article class="result mt-5 container">
+      <div class="text-center"> > 결과 < </div>
+      <div id="array" class="mt-2">
+        <div class="dot mr-1">⦁</div>
+        <div id="explainA" class=""></div>
+      </div>
+      <div id="array" class="mt-2">
+        <div class="dot mr-1">⦁</div>
+        <div id="explainB" class=""></div>
+      </div>
+      <div id="array" class="mt-2">
+        <div class="dot mr-1">⦁</div>
+        <div id="explainC" class=""></div>
+      </div>
+      <div id="array" class="mt-2">
+        <div class="dot mr-1">⦁</div>
+        <div id="explainD" class=""></div>
+      </div>
+      <div id="array" class="mt-2">
+        <div class="dot mr-1">⦁</div>
+        <div id="explainE" class=""></div>
+      </div>
+
+      <!-- <div class="text-center">
+        <img class="rounded-circle mt-5" id="img" src="" />
+      </div> -->
+
+      <!-- Go to www.addthis.com/dashboard to customize your tools -->
+      <div
+        class="addthis_inline_share_toolbox_5dxm text-center mt-5 mb-5"
+      ></div>
+    </article>
+   
+
+    
+
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+    <input type="hidden" id="EI" value="0" />
+    <input type="hidden" id="SN" value="0" />
+    <input type="hidden" id="TF" value="0" />
+    <input type="hidden" id="JP" value="0" />
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var num = 1;
+      var q = {
+        1: {
+          "number": "(1/12)",
+          "title":
+            "식당에서 주문을 하려는데 가게가 많이 소란스럽다. 이때 당신은?",
+          "type": "EI",
+          "A": "큰 소리로 '여기요!'하고 외친다.",
+          "B": "종업원이 지나갈 때까지 기다린다.",
+        },
+        2: {
+          "number": "(2/12)",
+          "title": "식당에서 밥을 먹는데 가스버너가 이상하다.",
+          "type": "SN",
+          "A": "이게 왜이러지 뭐가 잘못됐나?",
+          "B": "이거 폭발하는 거 아냐? 이거 폭발하면 어떻게 해야하지?",
+        },
+        3: {
+          "number": "(3/12)",
+          "title": "뜨거운 냄비에 데인 친구, 당신의 반응은?",
+          "type": "TF",
+          "A": "어디 봐봐. 병원에 갈 정도야?",
+          "B": "어떡해. 괜찮아?",
+        },
+        4: {
+          "number": "(4/12)",
+          "title": "친구가 즉흥적인 여행을 제안한다. 당신은?",
+          "type": "JP",
+          "A": "차표는? 숙박은? ",
+          "B": "재밌겠다!",
+        },
+        5: {
+          "number": "(5/12)",
+          "title": "버스를 탔는데 친하진 않지만 아는 사람을 만났다.",
+          "type": "EI",
+          "A": "반가워서 먼저 아는 체를 한다.",
+          "B": "자는 척 한다.",
+        },
+        6: {
+          "number": "(6/12)",
+          "title": "버스에 복면을 쓴 사람이 탔다.",
+          "type": "SN",
+          "A": "왜 복면을 썼지? 촬영하나?",
+          "B": "혹시 강도? 버스를 납치하려나? 어쩌지 내려야하나?",
+        },
+        7: {
+          "number": "(7/12)",
+          "title": "연인이 아프다고 한다.",
+          "type": "TF",
+          "A": "어디가 아파? 병원은 갔어?",
+          "B": "괜찮아? 많이 아파?",
+        },
+        8: {
+          "number": "(8/12)",
+          "title": "연인이 데리러 오라고 한다.",
+          "type": "JP",
+          "A": "5분쯤 걸리니까 2분 전에 나와있어. 근처에서 전화줄게",
+          "B": "금방가~ 앞에 나와있어~",
+        },
+        9: {
+          "number": "(9/12)",
+          "title": "우울한 날, 당신은?",
+          "type": "EI",
+          "A": "이럴때일수록 나가서 친구도 만나고 기분전환 해야지",
+          "B": "...이불밖은 위험해",
+        },
+        10: {
+          "number": "(10/12)",
+          "title": "길을가다 바위사이에 낀 꽃을 보았다.",
+          "type": "SN",
+          "A": "무슨 꽃일까?",
+          "B": "이런 곳에 꽃이 피다니. 어떻게 핀거지? 씨앗이 날라왔나? 어디서 왔지?",
+        },
+        11: {
+          "number": "(11/12)",
+          "title": "친구가 꽃을 꺾었다.",
+          "type": "TF",
+          "A": "왜 꺾어?",
+          "B": "아니 그걸 왜 꺾어ㅠㅠ",
+        },
+        12: {
+          "number": "(12/12)",
+          "title": "친구와 영화를 보러 가던 중 재밌는 거리공연을 발견했다.",
+          "type": "JP",
+          "A": "10분 후에 영화 시작하니까 아쉽지만 5분만 보다 가자.",
+          "B": "재밌는데 우리 영화는 다음 타임거로 볼래?",
+        },
+      };
+
+      var result = {
+        "ESTJ": {
+          "img": "",
+          "character": "",
+          "explainA": "리더십이 있어 사람들을 이끌어가는 것을 잘해요.",
+          "explainB":
+            "고집이 매우 세요. 그래서 남들이 아무리 뭐라 해도 고집을 안 꺾어요.",
+          "explainC":
+            "일을 잘해요. 집중력과 판단력이 뛰어나 일을 빨리 처리해요. 그래서인지 일을 잘 못하거나 말을 잘 못 알아듣는 사람을 굉장히 답답해해요. 또 그게 티가 나는 바람에 상대방이 상처를 입는 경우가 꽤 있어요.",
+          "explainD":
+            "감정적인 사람을 이해 못 해요. 그래서 감정적인 사람과의 트러블이 있을 때가 꽤 있어요. 대부분 감정적인 사람이 상처받고 당신은 그들이 왜 상처를 받았는지도 이해를 못 하는 상황이 반복돼요.",
+          "explainE":
+            "명확한 것을 좋아하고 애매한 것을 싫어해요. 그래서 뭐든 명확하게 짚고 넘어가려 해요. 이게 일과 관련될 땐 일을 빨리 처리할 수 있어 좋지만 사람과 관련될 땐 타인에게 상처를 주기도 해요.",
+        },
+        "ESTP": {
+          "img": "",
+          "character": "",
+          "explainA": "어딜 가든 주목받아요. 그리고 자신도 그걸 알고 즐깁니다.",
+          "explainB":
+            "자극적인 것을 좋아합니다. 겁도 없어서 위험한 일에도 쉽게 도전하는 편이에요. 그래서 가끔 긴급한 상황에 놓여 주변 사람의 속을 썩입니다. 근데 또 순발력이 뛰어나 문제를 빠르게 잘 해결해요.",
+          "explainC":
+            "미래에 대해 깊게 생각하고 준비하기보단 현재에 충실한 편이에요. 그래서 늘 지금 하고 싶은 것을 하고 지금 감정에 충실해요.",
+          "explainD":
+            "책을 보거나 영상으로 간접 체험하는 것보다 직접 경험하는 것을 선호해요. 뭐든 직접 보고 듣고 느껴야 한다고 생각하기 때문에 하고 싶은 게 있으면 바로바로 도전해요. 그렇기 때문에 다양한 경험이 많아요.",
+          "explainE":
+            "낯도 안 가리고 선입견도 없어서 다양한 사람들과 금세 친해져요.",
+        },
+        "ESFJ": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "정이 많아 남을 잘 도와줘요. 하지만 무조건적인 헌신은 아니에요. 자신이 준만큼 돌려받고 싶어 해요.",
+          "explainB": "관심받는 것을 좋아하며 그것을 즐겨요.",
+          "explainC":
+            "뭐든 단순하게 생각해요. 그래서 남을 잘 의심하지 않고 확대해석하지 않아요.",
+          "explainD":
+            "사람들과 어울리는 것을 좋아해 주위에 늘 사람이 끊이지 않아요. 많은 사람들과 관계를 맺고 지내지만 가벼운 관계가 아니라 꽤 진정성 있는 관계예요.",
+          "explainE": "귀가 얇아서 주위의 의견에 따라 자주 생각이 바뀌어요.",
+        },
+        "ESFP": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "말을 많이 하는데 생각 없이 말을 많이 해서 말실수가 잦아요,",
+          "explainB":
+            "단순해요. 그리고 모든 걸 단순하게 생각해요. 깊게 생각하는 순간 스트레스를 받아요.",
+          "explainC":
+            "자유를 중요하게 여겨요. 그래서 어디에 얽매이는 것을 못 참아요. 또 책임을 떠맡는 것을 싫어해요.",
+          "explainD":
+            "낯도 안 가리고 사람도 좋아해서 눈만 마주쳐도 친구가 될 정도예요. 성격도 밝고 쾌활해서 주위 사람들이 같이 시간 보내는 것을 좋아해요.",
+          "explainE":
+            "매우 충동적이어서 일을 잘 벌려요. 거기다 덜렁이라 옆에서 누가 챙겨주는 경우가 많아요.",
+        },
+        "ENTJ": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "매우 계획적이에요. 가까운 미래부터 먼 미래까지 머릿속에 계획을 다 세워놓고 있어요. 그리고 그 계획을 실현시키기 위해 노력해요.",
+          "explainB":
+            "완벽주의 성향이 있어 자신에게 투자를 많이 해요. 또 자기가 해낼 거라 굳게 믿고 있어 힘들어도 포기하지 않고 끝까지 해내요.",
+          "explainC":
+            "어딜 가든 당당하고 기죽지 않아요. 옆에서 뭐라 하든 자신의 페이스대로 나아가요",
+          "explainD":
+            "자신의 생각을 직설적으로 말하기 때문에 주위에서 상처를 받기도 해요. 하지만 그게 왜 상처를 주는지 이해를 못 해요.",
+          "explainE":
+            "자기주장이 강하고 고집도 세요. 이것 때문에 주위 사람들이 뭐라 하고 싶지만 맞는 소리라 또 뭐라 하지도 못해요.",
+        },
+        "ENTP": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "말을 엄청 잘해요. 논리적인 것을 중요하게 생각하기 때문에 논리적으로 말을 잘해요. 그리고 논리적이지 않은 말을 들으면 무조건 고치려고 해요.",
+          "explainB":
+            "자기애가 강하고 늘 자신감이 넘쳐서 항상 당당하고 거침없어요.",
+          "explainC":
+            "자신이 좋아하는 한 분야에 몰두하고 거기에 두각을 보여요. 반대로 관심 없는 것엔 정말 하나도 신경을 쓰지 않기 때문에 관련된 일을 잘 까먹어요.",
+          "explainD":
+            "사람들과 거리낌 없이 지내 사람을 좋아하나 싶다가도 자세히 들여다보면 은근히 혼자 있는 것을 즐겨요.",
+          "explainE":
+            "호기심이 매우 강해 궁금한 건 무조건 알아내야 해요. 또 해결하기 전까지 다른 일을 못해요.",
+        },
+        "ENFJ": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "사람을 좋아하며 언변 능력이 뛰어나 주위에 사람이 많아요.",
+          "explainB":
+            "마음이 따뜻하고 정이 많아요. 남들을 늘 배려하려고 노력해요. 그래서 사람들 사이에서 이미지가 매우 좋은 편이에요.",
+          "explainC":
+            "싸움을 싫어해서 많이 맞춰주는 편이에요. 하지만 더 이상은 못 버티겠다고 생각이 들면 차갑게 돌아서요.",
+          "explainD":
+            "매사에 열정적이고 여러 가지 일에 흥미를 느끼고 도전해요.",
+          "explainE":
+            "이상적인 생각을 많이 하고 그것을 현실로 만들고 싶어 해요. 하지만 너무 이상적인 생각인 경우가 많아 현실로 만드는데 어려움이 많아요.",
+        },
+        "ENFP": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "말이 많아요. 정말 많아요. 게다가 입만 움직이는 게 아니라 몸도 많이 움직여서 정신 사나워요. 가만히 있는 것을 보는 게 어려워요.",
+          "explainB":
+            "마음이 여려 쉽게 상처받아요. 그럴 때마다 사람들을 만나서 치유받아요.",
+          "explainC":
+            "쉽게 흥미를 느끼고 쉽게 질려 해요. 그래서 무언가 시작한 건 많은데 끝까지 해낸 것은 별로 없어요.",
+          "explainD": "사람을 좋아해요. 그래서 늘 주위에 사람이 많아요.",
+          "explainE":
+            "리액션이 좋고 공감을 잘해줘요. 늘 씩씩하고 밝은 에너지를 내뿜어 사람들이 당신과 함께 있으면 아무 생각 없이 웃을 수 있어요. 그래서 항상 사람들에게 사랑받는 사람이에요.",
+        },
+        "ISTJ": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "남에게 피해를 끼치는 것을 매우 싫어하며 책임감이 강해 뭐든 혼자 해결하려 해요. 힘든 일이 있어도 말을 잘 안 해주어서 주변에서 서운해하는 경우가 많아요.",
+          "explainB":
+            "무표정이 기본값인데다가 낯도 많이 가려 친해지기 어려워요. 하지만 친해지면 한없이 다정하고 말도 많고 재밌답니다.",
+          "explainC":
+            "본인은 자신이 딱히 부지런하다고 생각 안 하는데, 남들이 보기엔 정말 부지런해요.",
+          "explainD":
+            "혼자서도 잘 돌아다니고 잘 놀아요. 평소에 밖에 잘 돌아다니는 편은 아니지만 나가야 될 일이 있으면 나간 김에 잘 놀다 와요.",
+          "explainE":
+            "어른스러워 보여요. 그래서 주변에서 많이 의지합니다. 그렇지만 한편으로는 되게 지켜주고 싶은 느낌을 줘요.",
+        },
+        "ISTP": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "잔머리를 잘 굴려요. 뭐든 정석대로 하기보다는 최대한 빠르고 쉽게 하려고 해요. 일의 효율을 무척 따져요.",
+          "explainB":
+            "감정 기복이 별로 없어요. 주위에 무슨 일이 일어나도 그냥 그런가 보다 하고 딱히 신경 안 쓰는 데다가 애초부터 주위에 딱히 관심이 없어요.",
+          "explainC":
+            "잘 놀라지 않아요. 옆에서 큰 소리가 나도 ’어 큰소리가 나네‘하고 생각해요. 그냥 평온 그 자체",
+          "explainD":
+            "성격이 무던해서 그런지 생각보다 다양한 사람들과 잘 어울려요. 그래도 사람들과 어울리는 것보단 혼자서 노는 것을 더 좋아해요.",
+          "explainE":
+            "돌려 말하지 않고 굳이 거짓말을 하지도 않아요. 그냥 직설적으로 다 말해요.",
+        },
+        "ISFJ": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "사람들은 당신을 진짜 착하다고 생각해요. 겉도 착하고 속도 착해요.",
+          "explainB":
+            "조용해 보이지만 생각보다 친구가 많고 두루두루 잘 지내요.",
+          "explainC":
+            "자신이 손해를 볼 수 있는 상황에서도 남을 먼저 위해요. 마음이 힘든 것보단 몸이 힘든 게 낫다고 생각해요. 가끔은 너무 헌신적이라 주변에서 답답해하기도 해요.",
+          "explainD":
+            "주변 사람들의 생일이나 사소한 특징 같은 것을 잘 기억해 주변을 잘 챙겨줍니다. 그래서 주변 사람들이 감동을 하는 경우가 많아요. 하지만 그에 비해 자기 자신은 잘 못 챙기는 편이에요.",
+          "explainE":
+            "평소에 마음에 걸리는 일이 있어도 참다가 이것들이 쌓여 한순간에 터져요. 하지만 이마저도 상대방이 진심으로 미안해하면 금방 풀려요.",
+        },
+        "ISFP": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "말을 재미있게 잘하기 때문에 늘 주위에 사람이 많아요. 그리고 어딜 가든 잘 녹아들어 인싸처럼 보이지만 알고 보면 혼자 있는 걸 좋아해요.",
+          "explainB":
+            "직설적으로 말하는 편은 아닌 데다가 해야 할 말을 잘 못해요. 그래서 부탁받으면 싫어도 거절하지를 못해 부탁을 들어줘요. 거절을 잘 못하니까 남들에게 부탁을 계속 받아요...",
+          "explainC":
+            "말이 많아요... 정말 많아요... 그래서 당신의 말을 들어주는 사람들을 좋아해요.",
+          "explainD":
+            "타인의 말에 공감을 잘해주어 당신에게 마음을 터놓고 얘기하고 싶어 하는 이가 많아요. 거기다 당신의 착하고 선한 느낌 때문에 신뢰도도 높아요.",
+          "explainE":
+            "딱딱하지 않고 유연해요. 그래서 어떠한 상황에 놓이든 잘 대처해요.",
+        },
+        "INTJ": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "이해가 안 되면 공감을 못 하지만 대인관계를 위해 공감하는 척을 해요. 하지만 당신과 친밀한 사람들은 속으로 생각해요. “쟤 공감 못 할 건데..?”",
+          "explainB":
+            "올바르지 않다는 생각이 들면 대다수의 사람들이 옳다고 해도 올바르지 않다고 말할 수 있어요. 자기 소신대로 행동해요.",
+          "explainC":
+            "감정 표현을 잘하지는 않지만 친한 관계의 사람들에겐 생각보다 잘해요. 자신이 믿고 마음을 연 상대에게는 솔직하게 말하는 편이에요. 하지만 감정 표현이라기보다는 그 감정의 원인이 되는 상황을 설명해요.",
+          "explainD":
+            "처음엔 차분하고 단호해 보이는 이미지로 인해 친구가 많아 보이지 않지만 알고 보면 친구가 되게 많아요. 겉으로는 다 친해 보이지만 모두 깊은 관계는 아니에요. 당신이 진짜 마음을 연 친구들은 극소수에요.",
+          "explainE":
+            "말을 되게 잘해요. 논리적으로 또 군더더기 없이 깔끔하게 말을 해요.",
+        },
+        "INTP": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "자신에게 중요한 것이 아니면 잘 기억하지 않아요. 그래서 주변 사람들의 사소한 점들을 기억 못 할 때가 많아 주변에서 가끔 서운해해요.",
+          "explainB":
+            "친한 친구라도 먼저 연락을 잘 하지 않아요. 처음엔 다들 ’나에게 관심이 없나?‘라고 생각하다가 당신과 친해지면서 깨달아요. '얜 큰일 아니면 연락 안 하는구나...' 무소식이 희소식이다가 딱 어울려요.",
+          "explainC":
+            "논리적으로 보이다가도 가끔 되게 엉뚱하여 당신이 무슨 생각을 하는지 모르겠다고 생각해요.",
+          "explainD":
+            "처음 봤을 땐 조용하고 감정이 없어 보여서 다가가기 힘들지만 친해지면 사람이 너무 재밌어서 딴 사람처럼 느껴져요.",
+          "explainE":
+            "자기 주관이 매우 뚜렷하여 당신을 완벽하게 설득할 때까지는 자기 뜻을 굽히지 않아요.",
+        },
+        "INFJ": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "알면 알수록 속을 모르겠어요. 도대체 무슨 생각을 하고 사는지도 모르겠어요.",
+          "explainB":
+            "좋아하는 사람한테는 다정하지만 싫어하는 사람한테는 친절해요. 그래서 친구들도 당신이 누굴 좋아하는지 또 누굴 싫어하는지 당신이 말하기 전까진 모르는 경우가 많아요.",
+          "explainC":
+            "평소에 조용해 보이지만 관심 있는 분야에서는 엄청난 열정을 드러내 주위 사람들이 그 모습에 놀라기도 해요.",
+          "explainD":
+            "처음엔 조용해 보이나 친해지면 생각보다 말이 많아서 놀라요.",
+          "explainE":
+            "주위 사람들이 생각하는 당신은 신뢰도가 굉장히 높은 사람이에요. 당신에 관한 좋지 않은 소문을 들어도 대부분의 사람들은 '걔가? 그럴 리가 없는데? 아니겠지' 이러면서 소문보단 당신을 믿어요.",
+        },
+        "INFP": {
+          "img": "",
+          "character": "",
+          "explainA":
+            "반응이 좋아서 놀리기 좋아요. 사소한 것에도 반응해서 주위에서 당신을 놀리는 사람이 많아요. 반응도 귀여워서 계속 놀리고 싶은 타입... 리액션도 좋아서 무슨 말을 해도 잘 받아줘요.",
+          "explainB":
+            "맨날 집에 있어요. 남들이 집에서 꺼내기 전까지 밖으로 잘 안 나와요. 그래서 당신 옆에는 차분한 친구들보다 활발한 친구들이 많아요.",
+          "explainC":
+            "진짜 감성적이에요. 거기다가 감정을 숨기는 것도 잘 못해서 밖에서도 잘 울어요... 공감도 잘해서 친구들과 조금이라도 속 깊은 얘기를 하면 엄청 울어요...",
+          "explainD":
+            "항상 이상적인 것을 생각해요. 그래서 자신의 이상과는 거리가 먼 현실을 마주할 때 스트레스를 많이 받아요.",
+          "explainE":
+            "사람이 무해해요. 그래서 당신을 편하게 생각하는 사람이 많아요. 말도 예쁘게 하는 편이라 당신과 대화하면서 힐링 받는답니다.",
+        },
+      };
+
+      function start() {
+        $(".start").hide();
+        $(".question").show();
+        next();
+      }
+      $("#A").click(function () {
+        var type = $("#type").val();
+        var preValue = $("#" + type).val();
+        $("#" + type).val(parseInt(preValue) + 1);
+        next();
+      });
+      $("#B").click(function () {
+        next();
+      });
+
+      function next() {
+        if (num == 13) {
+          $(".question").hide();
+          // $(".loading").show();
+          
+          // $(".loading").delay(3000).hide();
+          $(".result").show();
+          var mbti = "";
+          $("#EI").val() < 2 ? (mbti += "I") : (mbti += "E");
+          $("#SN").val() < 2 ? (mbti += "N") : (mbti += "S");
+          $("#TF").val() < 2 ? (mbti += "F") : (mbti += "T");
+          $("#JP").val() < 2 ? (mbti += "P") : (mbti += "J");
+          $("#img").attr("src", result[mbti]["img"]);
+          $("#character").html(result[mbti]["character"]);
+          $("#explainA").html(result[mbti]["explainA"]);
+          $("#explainB").html(result[mbti]["explainB"]);
+          $("#explainC").html(result[mbti]["explainC"]);
+          $("#explainD").html(result[mbti]["explainD"]);
+          $("#explainE").html(result[mbti]["explainE"]);
+        } else {
+          $(".progress-bar").attr("style", "width: calc(100/12*" + num + "%)");
+          $("#number").html(q[num]["number"]);
+          $("#title").html(q[num]["title"]);
+          $("#type").val(q[num]["type"]);
+          $("#A").html(q[num]["A"]);
+          $("#B").html(q[num]["B"]);
+          num++;
+        }
+      }
+
+      
+    </script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script
+      type="text/javascript"
+      src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6328544602cf99da"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//t1.daumcdn.net/kas/static/ba.min.js"
+      async
+    ></script>
+
+    
+    <!-- 카카오 광고링크 -->
+    <script
+      type="text/javascript"
+      src="//t1.daumcdn.net/kas/static/ba.min.js"
+      async
+    ></script>
+
+    <!-- 구글 광고 -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5918171906017238"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <!-- Photo by <a href="https://unsplash.com/@aditya1702?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Aditya Vyas</a> on <a href="https://unsplash.com/s/photos/snow?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+   -->
+</html>

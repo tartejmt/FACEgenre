@@ -1,0 +1,89 @@
+/* font-family: 'Song Myung', serif; */
+
+article {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background-color: black;
+  background-size: cover;
+  background-attachment: fixed;
+  color: azure;
+
+  /* font-family: "Gowun Batang", serif; */
+  font-family: "Song Myung", serif;
+  font-size: 1rem;
+  background-image: url("aditya-vyas-PzhmEp_aDU4-unsplash (1).jpg");
+
+  /* font-family: "East Sea Dokdo", cursive; */
+}
+
+#title-img {
+  width: 70vw;
+  height: 70vw;
+  margin: 0 auto;
+}
+
+#title {
+  height: 50px;
+}
+
+.question {
+  display: none;
+}
+
+.loading {
+  display: none;
+}
+
+.result {
+  display: none;
+}
+
+#img {
+  width: 70vw;
+  height: 70vw;
+  margin: 0 auto;
+}
+
+.btn {
+  background-color: #2d2d2d;
+  color: azure;
+}
+
+.btn:hover {
+  background-color: #424242;
+  color: azure;
+}
+
+.progress-bar {
+  background-color: #292929;
+}
+
+#number {
+  color: #c7c7c7;
+}
+
+#bubble {
+  font-size: 2rem;
+  padding-top: 100px;
+}
+
+div#array {
+  display: flex;
+  flex-direction: row;
+}
+
+.dot {
+  color: #debfff;
+}
+
+.navbar .bg-light {
+  background-image: url("aditya-vyas-PzhmEp_aDU4-unsplash(1).jpg");
+  color: azure;
+}
+
+.navbar-light .navbar-brand {
+  font-size: 1.1rem;
+}
